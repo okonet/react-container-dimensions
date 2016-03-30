@@ -1,0 +1,16 @@
+{
+  "parser": "babel-eslint",
+  "extends": "eslint-config-wildbit",
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "plugins": [
+    "import"
+  ],
+  "settings": {
+    "import/resolve": {
+      "moduleDirectory": ["node_modules"]
+    }
+  }
+}
