@@ -1,6 +1,6 @@
 {
   "name": "react-container-dimensions",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Wrapper component that detects element resize and passes new dimensions down the tree. Based on [element-resize-detector](https://github.com/wnr/element-resize-detector)",
   "main": "lib/index.js",
   "scripts": {
@@ -20,10 +20,17 @@
     "type": "git",
     "url": "git+https://github.com/okonet/react-container-dimensions.git"
   },
-  "directories": {
-    "example": "example"
-  },
-  "keywords": [],
+  "keywords": [
+    "resize",
+    "parent",
+    "container",
+    "element",
+    "react",
+    "detector",
+    "detect",
+    "size",
+    "dimensions"
+  ],
   "author": "Andrey Okonetchnikov <andrey@okonet.ru>",
   "license": "ISC",
   "bugs": {
@@ -47,6 +54,7 @@
     "eslint-config-wildbit": "^2.0.0",
     "eslint-plugin-import": "^1.4.0",
     "lint-staged": "^0.1.1",
+    "mocha": "^2.4.5",
     "pre-commit": "^1.1.2",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
