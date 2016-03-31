@@ -1,6 +1,6 @@
 {
   "name": "react-container-dimensions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Wrapper component that detects element resize and passes new dimensions down the tree. Based on [element-resize-detector](https://github.com/wnr/element-resize-detector)",
   "main": "lib/index.js",
   "scripts": {
@@ -20,7 +20,9 @@
     "type": "git",
     "url": "git+https://github.com/okonet/react-container-dimensions.git"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "directories": {
     "lib": "lib"
   },
