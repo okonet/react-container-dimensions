@@ -20,6 +20,10 @@
     "type": "git",
     "url": "git+https://github.com/okonet/react-container-dimensions.git"
   },
+  "files": ["lib"],
+  "directories": {
+    "lib": "lib"
+  },
   "keywords": [
     "resize",
     "parent",
