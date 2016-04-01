@@ -33,7 +33,7 @@ it acts as a middleware to pass _your_ styled component dimensions to your child
 
 ## Other similar projects:
 
-* https://github.com/maslianok/react-resize-detector/blob/master/package.json
+* https://github.com/maslianok/react-resize-detector
 * https://github.com/Xananax/react-size
 * https://github.com/joeybaker/react-element-query
 
