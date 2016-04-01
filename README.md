@@ -28,7 +28,9 @@ it acts as a middleware to pass _your_ styled component dimensions to your child
 2. Use a function to pass width or height explicitely or do some calculation. Function callback will be called with an object `{ width: number, height: number }` as an argument.
 
 ```jsx
-<ContainerDimensions children={ ({ height }) => <MyComponent height={height}/> }/>
+<ContainerDimensions>
+    { ({ height }) => <MyComponent height={height}/> }
+</ContainerDimensions>    
 ```
 
 ## Other similar projects:
