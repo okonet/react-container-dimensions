@@ -18,15 +18,13 @@ it acts as a middleware to pass _your_ styled component dimensions to your child
 ## Usage
 
 1. Wrap your existing components. Children component will recieve `width` and `height` as props.
-
 ```jsx
 <ContainerDimensions>
     <MyComponent/>
 </ContainerDimensions>    
 ```
 
-2. Use a function to pass width or height explicitely or do some calculation. Function callback will be called with an object `{ width: number, height: number }` as an argument.
-
+2. Use a function to pass width or height explicitely or do some calculation. Function callback will be called with an object `{ width: number, height: number }` as an argument and it expects the output to be a React Component or an element.
 ```jsx
 <ContainerDimensions>
     { ({ height }) => <MyComponent height={height}/> }
