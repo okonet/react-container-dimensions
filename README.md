@@ -39,13 +39,12 @@ Let's say you want your SVG visualization to always fit into the container. In o
 
 ### Before (static)
 
-```jsx
-const width = 600
-const height = 300
+It's hard to keep dimensions of the container and the SVG in sync. Especially, when you want your content to be resplonsive (or dynamic).
 
+```jsx
 export const myVis = () => (
     <div className="myStyles">
-        <svg width={width} height={height}>
+        <svg width={600} height={400}>
             {/* SVG contents */}
         </svg>  
     <div>
