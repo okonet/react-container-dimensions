@@ -21,10 +21,6 @@ export default class ContainerDimensions extends Component {
         this.elementResizeDetector.listenTo(ReactDOM.findDOMNode(this).parentNode, this.onResize)
     }
 
-    componentWillReceiveProps() {
-        this.onResize()
-    }
-
     componentWillUnmount() {
         this.elementResizeDetector.removeListener(
             ReactDOM.findDOMNode(this).parentNode, this.onResize
