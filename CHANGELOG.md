@@ -1,6 +1,6 @@
 ## Change Log
 
-### v0.0.3
+### master
 - Do not call the resize callback in `componentWillReceiveProps`
 - Better examples in README
 
