@@ -13,14 +13,6 @@ describe('react-container-dimensions', () => {
             .to.throw('Expected children to be one of function or React.Element')
     })
 
-    it.skip('should throw without the parent element', () => {
-        expect(() => mount(
-            <ContainerDimensions>
-                <span>test</span>
-            </ContainerDimensions>
-        )).to.throw('ContainerDimensions can not be mounted as a root node')
-    })
-
     it.skip('calls componentDidMount', (done) => {
         spy(ContainerDimensions.prototype, 'componentDidMount')
         spy(ContainerDimensions.prototype, 'componentWillUnmount')

@@ -20,10 +20,8 @@ export default class ContainerDimensions extends Component {
     }
 
     componentDidMount() {
-        const parentNode = this.findParentNode()
-        invariant(parentNode, 'ContainerDimensions can not be mounted as a root node')
         this.elementResizeDetector = elementResizeDetectorMaker({ strategy: 'scroll' })
-        this.elementResizeDetector.listenTo(parentNode, this.onResize)
+        this.elementResizeDetector.listenTo(this.findParentNode(), this.onResize)
         this.onResize()
     }
 
