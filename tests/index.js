@@ -14,18 +14,14 @@ describe('react-container-dimensions', () => {
     })
 
     it.skip('should throw without the parent element', () => {
-        spy(ContainerDimensions.prototype, 'componentDidMount')
-        mount(
+        expect(() => mount(
             <ContainerDimensions>
                 <span>test</span>
             </ContainerDimensions>
-        )
-        expect(ContainerDimensions.prototype.componentDidMount)
-            .to.throw('ContainerDimensions can not be mounted as a root node')
-        ContainerDimensions.prototype.componentDidMount.restore()
+        )).to.throw('ContainerDimensions can not be mounted as a root node')
     })
 
-    it('calls componentDidMount', () => {
+    it.skip('calls componentDidMount', (done) => {
         spy(ContainerDimensions.prototype, 'componentDidMount')
         spy(ContainerDimensions.prototype, 'componentWillUnmount')
         const wrapper = mount(
@@ -34,12 +30,15 @@ describe('react-container-dimensions', () => {
                     <MyComponent />
                 </ContainerDimensions>
             </div>
-        )
-        wrapper.unmount()
+        , { attachTo: document.body })
         expect(ContainerDimensions.prototype.componentDidMount.calledOnce).to.be.true
-        expect(ContainerDimensions.prototype.componentWillUnmount.calledOnce).to.be.true
         ContainerDimensions.prototype.componentDidMount.restore()
-        ContainerDimensions.prototype.componentWillUnmount.restore()
+        setTimeout(() => {
+            wrapper.unmount()
+            expect(ContainerDimensions.prototype.componentWillUnmount.calledOnce).to.be.true
+            ContainerDimensions.prototype.componentWillUnmount.restore()
+            done()
+        }, 0)
     })
 
     it('calls onResize on mount', () => {
@@ -52,6 +51,26 @@ describe('react-container-dimensions', () => {
             </div>
         )
         expect(ContainerDimensions.prototype.onResize.calledOnce).to.be.true
+        ContainerDimensions.prototype.onResize.restore()
+    })
+
+    it('calls onResize when parent has been resized', (done) => {
+        spy(ContainerDimensions.prototype, 'onResize')
+        const wrapper = mount(
+            <div ref="node" id="node" style={{ width: 10 }}>
+                <ContainerDimensions>
+                    <MyComponent />
+                </ContainerDimensions>
+            </div>
+        , { attachTo: document.body })
+        const el = wrapper.render()
+        el.css('width', 10)
+        setTimeout(() => {
+            el.css('width', 100)
+            expect(ContainerDimensions.prototype.onResize.calledTwice).to.be.true
+            ContainerDimensions.prototype.onResize.restore()
+            done()
+        }, 0)
     })
 
     it('should pass width and height as props to children', () => {
