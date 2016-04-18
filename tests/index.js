@@ -73,67 +73,65 @@ describe('react-container-dimensions', () => {
         }, 0)
     })
 
-    it('should pass width and height as props to children', () => {
+    it('should pass width and height as props to its children', () => {
         const wrapper = mount(
-            <div style={{ width: 100, height: 200 }}>
-                <ContainerDimensions>
-                    <MyComponent />
-                </ContainerDimensions>
-            </div>
+            <ContainerDimensions>
+                <MyComponent />
+            </ContainerDimensions>
         )
+        wrapper.setState({
+            width: 100,
+            height: 200
+        })
         expect(wrapper.find(MyComponent)).to.have.length(1)
-        expect(wrapper.find(MyComponent)).to.have.prop('width', 0)
-        expect(wrapper.find(MyComponent)).to.have.prop('height', 0)
+        expect(wrapper.find(MyComponent)).to.have.prop('width', 100)
+        expect(wrapper.find(MyComponent)).to.have.prop('height', 200)
     })
 
-    it('should pass width and height as props to children', () => {
+    it('should pass width and height as function arguments', () => {
         const wrapper = mount(
-            <div style={{ width: 100, height: 200 }}>
-                <ContainerDimensions>
-                    { ({ width, height }) => <MyComponent width={width + 10}
-                                                          height={height + 10}/> }
-                </ContainerDimensions>
-            </div>
+            <ContainerDimensions>
+                {
+                    ({ width, height }) => <MyComponent width={width + 10} height={height + 10} />
+                }
+            </ContainerDimensions>
         )
+        wrapper.setState({
+            width: 100,
+            height: 200
+        })
         expect(wrapper.find(MyComponent)).to.have.length(1)
-        expect(wrapper.find(MyComponent)).to.have.prop('width', 10)
-        expect(wrapper.find(MyComponent)).to.have.prop('height', 10)
+        expect(wrapper.find(MyComponent)).to.have.prop('width', 110)
+        expect(wrapper.find(MyComponent)).to.have.prop('height', 210)
     })
 
     it('should work with SVG elements', () => {
         const wrapper = mount(
-            <g>
-                <ContainerDimensions>
-                    <rect/>
-                </ContainerDimensions>
-            </g>
+            <ContainerDimensions>
+                <rect />
+            </ContainerDimensions>
         )
+        wrapper.setState({
+            width: 100,
+            height: 200
+        })
         expect(wrapper.find('rect')).to.have.length(1)
-        expect(wrapper.find('rect')).to.have.prop('width', 0)
-        expect(wrapper.find('rect')).to.have.prop('height', 0)
+        expect(wrapper.find('rect')).to.have.prop('width', 100)
+        expect(wrapper.find('rect')).to.have.prop('height', 200)
     })
 
-    it('should pass width and height as props to children', () => {
+    it('should not create a DOM element for itself', () => {
         const wrapper = mount(
-            <g style={{ width: 100, height: 200 }}>
-                <ContainerDimensions>
-                    { ({ width, height }) => <rect width={width} height={height}/> }
-                </ContainerDimensions>
-            </g>
-        )
-        expect(wrapper.find('rect')).to.have.length(1)
-        expect(wrapper.find('rect')).to.have.prop('width', 0)
-        expect(wrapper.find('rect')).to.have.prop('height', 0)
-    })
-
-    it('should not create an element', () => {
-        const wrapper = shallow(
             <h1>
                 <ContainerDimensions>
                     <span>Test</span>
                 </ContainerDimensions>
             </h1>
         )
-        expect(wrapper.html()).to.eql('<h1><span width="0" height="0">Test</span></h1>')
+        expect(wrapper.html()).to.eql('<h1><span width="0" height="0">Test</span><div' +
+            ' class="erd_scroll_detection_container' +
+            ' erd_scroll_detection_container_animation_active" style="visibility: hidden;' +
+            ' display: inline; width: 0px; height: 0px; z-index: -1; overflow:' +
+            ' hidden;"></div></h1>')
     })
 })
