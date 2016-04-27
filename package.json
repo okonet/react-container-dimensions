@@ -13,7 +13,8 @@
     "test:watch": "npm test -- --watch",
     "eslint-staged": "eslint-staged",
     "deps": "npm-check -s",
-    "deps:update": "npm-check -u"
+    "deps:update": "npm-check -u",
+    "release": "npmpub"
   },
   "pre-commit": [
     "eslint-staged"
@@ -69,6 +70,7 @@
     "lint-staged": "^0.1.1",
     "mocha": "^2.4.5",
     "npm-check": "^5.2.1",
+    "npmpub": "^3.1.0",
     "pre-commit": "^1.1.2",
     "react": "^0.14.8",
     "react-addons-test-utils": "^0.14.8",
