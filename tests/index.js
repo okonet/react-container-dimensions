@@ -1,10 +1,12 @@
+/* eslint no-unused-expressions: 0 */
 import React from 'react'
-import { shallow, mount } from 'enzyme'
-import { spy, stub } from 'sinon'
-import { expect } from 'chai'
+import { mount } from 'enzyme'
+import { spy } from 'sinon'
+import chai, { expect } from 'chai'
 import ContainerDimensions from '../src/index'
 
-const MyComponent = ({ width, height }) => <span>{width}, {height}</span>
+chai.use(require('chai-enzyme')())
+const MyComponent = ({ width, height }) => <span>{width}, {height}</span> // eslint-disable-line
 
 describe('react-container-dimensions', () => {
 
@@ -13,7 +15,7 @@ describe('react-container-dimensions', () => {
             .to.throw('Expected children to be one of function or React.Element')
     })
 
-    it.skip('calls componentDidMount', (done) => {
+    it('calls componentDidMount', (done) => {
         spy(ContainerDimensions.prototype, 'componentDidMount')
         spy(ContainerDimensions.prototype, 'componentWillUnmount')
         const wrapper = mount(
@@ -23,6 +25,7 @@ describe('react-container-dimensions', () => {
                 </ContainerDimensions>
             </div>
         , { attachTo: document.body })
+        expect(wrapper.find('div').length).to.eq(1)
         expect(ContainerDimensions.prototype.componentDidMount.calledOnce).to.be.true
         ContainerDimensions.prototype.componentDidMount.restore()
         setTimeout(() => {
@@ -84,7 +87,7 @@ describe('react-container-dimensions', () => {
         const wrapper = mount(
             <ContainerDimensions>
                 {
-                    ({ width, height }) => <MyComponent width={width + 10} height={height + 10} />
+                    ({ width, height }) => <MyComponent width={width + 10} height={height + 10} /> // eslint-disable-line
                 }
             </ContainerDimensions>
         )
