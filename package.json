@@ -65,6 +65,7 @@
     "eslint": "^2.5.3",
     "eslint-config-wildbit": "^2.0.0",
     "eslint-plugin-import": "^1.4.0",
+    "jsdom": "^8.4.0",
     "lint-staged": "^0.1.1",
     "mocha": "^2.4.5",
     "npm-check": "^5.2.1",
