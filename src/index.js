@@ -25,9 +25,7 @@ export default class ContainerDimensions extends Component {
     }
 
     componentWillUnmount() {
-        this.elementResizeDetector.removeListener(
-            this.parentNode, this.onResize
-        )
+        this.elementResizeDetector.removeListener(this.parentNode, this.onResize)
     }
 
     onResize() {
