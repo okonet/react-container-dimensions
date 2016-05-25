@@ -12,41 +12,39 @@ export default class ContainerDimensions extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            width: 0,
-            height: 0
+            initiated: false
         }
         this.onResize = this.onResize.bind(this)
-        this.findParentNode = this.findParentNode.bind(this)
     }
 
     componentDidMount() {
+        this.parentNode = ReactDOM.findDOMNode(this).parentNode
         this.elementResizeDetector = elementResizeDetectorMaker({ strategy: 'scroll' })
-        this.elementResizeDetector.listenTo(this.findParentNode(), this.onResize)
+        this.elementResizeDetector.listenTo(this.parentNode, this.onResize)
         this.onResize()
     }
 
     componentWillUnmount() {
         this.elementResizeDetector.removeListener(
-            ReactDOM.findDOMNode(this).parentNode, this.onResize
+            this.parentNode, this.onResize
         )
     }
 
     onResize() {
-        const container = this.findParentNode()
-        const clientRect = container.getBoundingClientRect()
+        const clientRect = this.parentNode.getBoundingClientRect()
         this.setState({
+            initiated: true,
             width: clientRect.width,
             height: clientRect.height
         })
     }
 
-    findParentNode() {
-        return ReactDOM.findDOMNode(this).parentNode
-    }
-
     render() {
         invariant(this.props.children, 'Expected children to be one of function or React.Element')
 
+        if (!this.state.initiated) {
+            return <div />
+        }
         if (typeof this.props.children === 'function') {
             const renderedChildren = this.props.children(this.state)
             return renderedChildren && Children.only(renderedChildren)
