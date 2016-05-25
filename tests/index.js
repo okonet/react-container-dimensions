@@ -68,15 +68,19 @@ describe('react-container-dimensions', () => {
         }, 0)
     })
 
-    it('should initially pass { width: 0, height: 0 } to its children', () => {
+    it('should initially render an empty placeholder', () => {
         const wrapper = mount(
             <ContainerDimensions>
                 <MyComponent />
             </ContainerDimensions>
         )
-        expect(wrapper.find(MyComponent)).to.have.length(1)
-        expect(wrapper.find(MyComponent)).to.have.prop('width', 0)
-        expect(wrapper.find(MyComponent)).to.have.prop('height', 0)
+        wrapper.setState({
+            initiated: false
+        })
+
+        expect(wrapper.find(ContainerDimensions)).to.have.exactly(1).descendants('div')
+        expect(wrapper.find(ContainerDimensions)).to.have.html('<div></div>')
+        expect(wrapper.find(ContainerDimensions)).to.not.contain(<MyComponent />)
     })
 
     it('should pass width and height as props to its children', () => {
