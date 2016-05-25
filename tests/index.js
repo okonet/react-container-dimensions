@@ -68,6 +68,17 @@ describe('react-container-dimensions', () => {
         }, 0)
     })
 
+    it('should initially pass { width: 0, height: 0 } to its children', () => {
+        const wrapper = mount(
+            <ContainerDimensions>
+                <MyComponent />
+            </ContainerDimensions>
+        )
+        expect(wrapper.find(MyComponent)).to.have.length(1)
+        expect(wrapper.find(MyComponent)).to.have.prop('width', 0)
+        expect(wrapper.find(MyComponent)).to.have.prop('height', 0)
+    })
+
     it('should pass width and height as props to its children', () => {
         const wrapper = mount(
             <ContainerDimensions>
