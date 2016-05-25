@@ -9,8 +9,8 @@ export default class ContainerDimensions extends Component {
         children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired
     }
 
-    constructor(props, context) {
-        super(props, context)
+    constructor() {
+        super()
         this.state = {
             initiated: false
         }
