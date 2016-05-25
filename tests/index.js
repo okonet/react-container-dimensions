@@ -79,8 +79,14 @@ describe('react-container-dimensions', () => {
         })
 
         expect(wrapper.find(ContainerDimensions)).to.have.exactly(1).descendants('div')
-        expect(wrapper.find(ContainerDimensions)).to.have.html('<div></div>')
-        expect(wrapper.find(ContainerDimensions)).to.not.contain(<MyComponent />)
+        expect(wrapper).to.have.html('<div></div>')
+        expect(wrapper.find(MyComponent).length).to.eq(0)
+
+        wrapper.setState({
+            initiated: true
+        })
+
+        expect(wrapper.find(MyComponent).length).to.eq(1)
     })
 
     it('should pass width and height as props to its children', () => {
@@ -138,7 +144,7 @@ describe('react-container-dimensions', () => {
                 </ContainerDimensions>
             </h1>
         )
-        expect(wrapper.html()).to.eql('<h1><span width="0" height="0">Test</span><div' +
+        expect(wrapper).to.have.html('<h1><span width="0" height="0">Test</span><div' +
             ' class="erd_scroll_detection_container' +
             ' erd_scroll_detection_container_animation_active" style="visibility: hidden;' +
             ' display: inline; width: 0px; height: 0px; z-index: -1; overflow:' +
