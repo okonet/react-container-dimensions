@@ -31,7 +31,7 @@ visualization needs to be updated in order to fit into container.
 
 *It does not create a new element in the DOM but relies on the `parentNode` which must be present.* So, basically, it acts as a middleware to pass the dimensions of _your_ styled component to your children components. This makes it _very easy_ to integrate with your existing code base.
 
-Also consider a flexbox example. If your parent container has `display: flex`, only next children will be affected by this rule. This means if your children rely on `flex` CSS property, you can't wrap it in a div anymore since _this will break the flexbox flow_.
+For example, if your parent container has `display: flex`, only adjacent children will be affected by this rule. This means if your children rely on `flex` CSS property, you can't wrap it in a div anymore since _this will break the flexbox flow_.
 
 So this won't work anymore:
 
