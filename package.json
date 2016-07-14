@@ -47,7 +47,7 @@
   },
   "homepage": "https://github.com/okonet/react-container-dimensions#readme",
   "dependencies": {
-    "element-resize-detector": "^1.1.0",
+    "element-resize-detector": "^1.1.5",
     "invariant": "^2.2.1"
   },
   "peerDependencies": {
@@ -69,13 +69,13 @@
     "jsdom": "^8.4.0",
     "lint-staged": "^0.1.1",
     "mocha": "^2.4.5",
-    "npm-check": "^5.2.1",
+    "npm-check": "^5.2.2",
     "npmpub": "^3.1.0",
     "pre-commit": "^1.1.2",
     "react": "^0.14.8",
     "react-addons-test-utils": "^0.14.8",
     "react-dom": "^0.14.8",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.5.3",
     "sinon": "^1.17.3"
   }
 }
