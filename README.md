@@ -27,11 +27,29 @@ visualization needs to be updated in order to fit into container.
 </ContainerDimensions>    
 ```
 
-## How is it different from ...
+## How is it different from [similar_component_here]
 
-*It does not create a new element in the DOM but relies on the `parentNode` which must be present.* 
-This means it doesn't require its own CSS to do the job and leaves it up to you. So, basically, 
-it acts as a middleware to pass _your_ styled component dimensions to your children components. This makes it _very_ easy to integrate with your existing code base.
+*It does not create a new element in the DOM but relies on the `parentNode` which must be present.* So, basically, it acts as a middleware to pass the dimensions of _your_ styled component to your children components. This makes it _very easy_ to integrate with your existing code base.
+
+Also consider a flexbox example. If your parent container has `display: flex`, only next children will be affected by this rule. This means if your children rely on `flex` CSS property, you can't wrap it in a div anymore since _this will break the flexbox flow_.
+
+So this won't work anymore:
+
+```html
+<div style="display: flex">
+    <div>
+        <div style="flex: 1">...</div>
+    </div>
+</div>
+```
+
+`react-container-dimensions` doesn't change the resulting HTML markup, so it remains:
+
+```html
+<div style="display: flex">
+    <div style="flex: 1">...</div>
+</div>
+```
 
 ## Example
 
@@ -73,6 +91,7 @@ export const myVis = () => (
 
 ## Other similar projects:
 
+* https://github.com/digidem/react-dimensions
 * https://github.com/maslianok/react-resize-detector
 * https://github.com/Xananax/react-size
 * https://github.com/joeybaker/react-element-query
