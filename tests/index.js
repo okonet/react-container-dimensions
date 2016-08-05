@@ -1,7 +1,7 @@
 /* eslint no-unused-expressions: 0 */
 import React from 'react'
 import { mount } from 'enzyme'
-import { spy } from 'sinon'
+import { spy, stub } from 'sinon'
 import chai, { expect } from 'chai'
 import ContainerDimensions from '../src/index'
 
@@ -61,11 +61,44 @@ describe('react-container-dimensions', () => {
         const el = wrapper.render()
         el.css('width', 10)
         setTimeout(() => {
-            el.css('width', 100)
+            el.css('width', 100) // Triggering onResize event
             expect(ContainerDimensions.prototype.onResize.calledTwice).to.be.true
             ContainerDimensions.prototype.onResize.restore()
             done()
-        }, 0)
+        }, 10)
+    })
+
+    it('onResize sets state with all keys and values from getBoundingClientRect', () => {
+        const styles = { top: 100, width: 200 }
+        stub(ContainerDimensions, 'getDomNodeDimensions', () => ({
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            width: 0,
+            height: 0,
+            ...styles
+        }))
+        const wrapper = mount(
+            <div style={styles}>
+                <ContainerDimensions>
+                    <MyComponent />
+                </ContainerDimensions>
+            </div>
+        , { attachTo: document.body })
+
+        wrapper.render()
+        expect(wrapper.find(MyComponent).props()).to.have.keys([
+            'initiated',
+            'top',
+            'right',
+            'bottom',
+            'left',
+            'width',
+            'height'])
+        expect(wrapper.find(MyComponent)).to.have.prop('top', 100)
+        expect(wrapper.find(MyComponent)).to.have.prop('width', 200)
+        ContainerDimensions.getDomNodeDimensions.restore()
     })
 
     it('should initially render an empty placeholder', () => {
@@ -89,34 +122,49 @@ describe('react-container-dimensions', () => {
         expect(wrapper.find(MyComponent).length).to.eq(1)
     })
 
-    it('should pass width and height as props to its children', () => {
+    it('should pass dimensions as props to its children', () => {
         const wrapper = mount(
             <ContainerDimensions>
                 <MyComponent />
             </ContainerDimensions>
         )
         wrapper.setState({
+            top: 0,
+            right: 100,
+            bottom: 300,
+            left: 200,
             width: 100,
             height: 200
         })
         expect(wrapper.find(MyComponent)).to.have.length(1)
+        expect(wrapper.find(MyComponent)).to.have.prop('top', 0)
+        expect(wrapper.find(MyComponent)).to.have.prop('right', 100)
+        expect(wrapper.find(MyComponent)).to.have.prop('bottom', 300)
+        expect(wrapper.find(MyComponent)).to.have.prop('left', 200)
         expect(wrapper.find(MyComponent)).to.have.prop('width', 100)
         expect(wrapper.find(MyComponent)).to.have.prop('height', 200)
     })
 
-    it('should pass width and height as function arguments', () => {
+    it('should pass dimensions as function arguments', () => {
         const wrapper = mount(
             <ContainerDimensions>
                 {
-                    ({ width, height }) => <MyComponent width={width + 10} height={height + 10} /> // eslint-disable-line
+                    ({ left, width, height }) => // eslint-disable-line
+                        <MyComponent
+                            left={left + 10}
+                            width={width + 10}
+                            height={height + 10}
+                        />
                 }
             </ContainerDimensions>
         )
         wrapper.setState({
+            left: 20,
             width: 100,
             height: 200
         })
         expect(wrapper.find(MyComponent)).to.have.length(1)
+        expect(wrapper.find(MyComponent)).to.have.prop('left', 30)
         expect(wrapper.find(MyComponent)).to.have.prop('width', 110)
         expect(wrapper.find(MyComponent)).to.have.prop('height', 210)
     })
