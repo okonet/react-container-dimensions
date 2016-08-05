@@ -9,9 +9,11 @@ It is especially useful when you create components with dimensions that change o
 time and you want to explicitely pass the container dimensions to the children. For example, SVG 
 visualization needs to be updated in order to fit into container.
 
+It uses [`getBoundingClientRect()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) and passes values for all `top`, `right`, `bottom`, `left`, `width`, `height` CSs attributes down the tree.
+
 ## Usage
 
-* Wrap your existing components. Children component will recieve `width` and `height` as props. 
+* Wrap your existing components. Children component will recieve `top`, `right`, `bottom`, `left`, `width`, `height` as props. 
 
 ```jsx
 <ContainerDimensions>

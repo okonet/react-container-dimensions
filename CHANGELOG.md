@@ -1,3 +1,7 @@
+# 1.3.0
+
+- Pass all values of getBoundingClientRect, not just `width` and `height`. (#6)
+
 # 1.2.0
 
 - Added React 15 to a semver range for peerDependencies (#3)

@@ -9,6 +9,11 @@ export default class ContainerDimensions extends Component {
         children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired
     }
 
+    static getDomNodeDimensions(node) {
+        const { top, right, bottom, left, width, height } = node.getBoundingClientRect()
+        return { top, right, bottom, left, width, height }
+    }
+
     constructor() {
         super()
         this.state = {
@@ -29,11 +34,10 @@ export default class ContainerDimensions extends Component {
     }
 
     onResize() {
-        const clientRect = this.parentNode.getBoundingClientRect()
+        const clientRect = ContainerDimensions.getDomNodeDimensions(this.parentNode)
         this.setState({
             initiated: true,
-            width: clientRect.width,
-            height: clientRect.height
+            ...clientRect
         })
     }
 
