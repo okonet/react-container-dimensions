@@ -49,6 +49,25 @@ describe('react-container-dimensions', () => {
         ContainerDimensions.prototype.onResize.restore()
     })
 
+    it('calls onResize when parent has been resized', (done) => {
+        spy(ContainerDimensions.prototype, 'onResize')
+        const wrapper = mount(
+            <div ref="node" id="node" style={{ width: 10 }}>
+                <ContainerDimensions>
+                    <MyComponent />
+                </ContainerDimensions>
+            </div>
+        , { attachTo: document.body })
+        const el = wrapper.render()
+        el.css('width', 10)
+        setTimeout(() => {
+            el.css('width', 100) // Triggering onResize event
+            expect(ContainerDimensions.prototype.onResize.calledTwice).to.be.true
+            ContainerDimensions.prototype.onResize.restore()
+            done()
+        }, 10)
+    })
+
     it('onResize sets state with all keys and values from getBoundingClientRect', () => {
         const styles = { top: 100, width: 200 }
         stub(ContainerDimensions, 'getDomNodeDimensions', () => ({
@@ -130,7 +149,7 @@ describe('react-container-dimensions', () => {
         const wrapper = mount(
             <ContainerDimensions>
                 {
-                    ({ left, width, height }) => // eslint-disable-line react/prop-types
+                    ({ left, width, height }) => // eslint-disable-line
                         <MyComponent
                             left={left + 10}
                             width={width + 10}
