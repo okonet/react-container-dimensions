@@ -47,8 +47,8 @@
   },
   "homepage": "https://github.com/okonet/react-container-dimensions#readme",
   "dependencies": {
-    "element-resize-detector": "^1.1.5",
-    "invariant": "^2.2.1"
+    "element-resize-detector": "^1.1.10",
+    "invariant": "^2.2.2"
   },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
