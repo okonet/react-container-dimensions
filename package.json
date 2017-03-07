@@ -7,17 +7,22 @@
     "build": "babel --presets=react,es2015,stage-1 src --out-dir lib",
     "clean": "rimraf lib",
     "lint": "eslint ./src",
-    "lint:fix": "eslint --fix ./src",
     "prepublish": "npm run lint && npm run clean && npm run build",
     "test": "mocha --compilers js:babel-core/register --require testSetup.js --recursive ./tests/*.js",
     "test:watch": "npm test -- --watch",
-    "eslint-staged": "eslint-staged",
+    "lint-staged": "lint-staged",
     "deps": "npm-check -s",
     "deps:update": "npm-check -u",
     "release": "npmpub"
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "pre-commit": [
-    "eslint-staged"
+    "lint-staged"
   ],
   "repository": {
     "type": "git",
@@ -67,11 +72,11 @@
     "eslint-config-wildbit": "^2.0.0",
     "eslint-plugin-import": "^1.4.0",
     "jsdom": "^9.11.0",
-    "lint-staged": "^0.1.1",
+    "lint-staged": "^3.3.1",
     "mocha": "^3.2.0",
     "npm-check": "^5.2.2",
     "npmpub": "^3.1.0",
-    "pre-commit": "^1.1.2",
+    "pre-commit": "^1.2.2",
     "react": "^0.14.8",
     "react-addons-test-utils": "^0.14.8",
     "react-dom": "^0.14.8",
