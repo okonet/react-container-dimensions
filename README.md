@@ -1,4 +1,4 @@
-# react-container-dimensions [![Build Status](https://travis-ci.org/okonet/react-container-dimensions.svg?branch=master)](https://travis-ci.org/okonet/react-container-dimensions)
+# react-container-dimensions [![Build Status](https://travis-ci.org/okonet/react-container-dimensions.svg?branch=master)](https://travis-ci.org/okonet/react-container-dimensions) [![npm version](https://badge.fury.io/js/react-container-dimensions.svg)](https://badge.fury.io/js/react-container-dimensions)
 Wrapper component that detects parent (container) element resize and passes new dimensions down the 
 tree. Based on [element-resize-detector]
 (https://github.com/wnr/element-resize-detector)
