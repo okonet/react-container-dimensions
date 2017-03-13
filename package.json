@@ -67,7 +67,7 @@
     "chai-enzyme": "^0.6.1",
     "enzyme": "^2.7.1",
     "eslint": "^3.11.0",
-    "eslint-config-okonet": "^1.2.1",
+    "eslint-config-okonet": "^1.2.3",
     "jsdom": "^9.11.0",
     "lint-staged": "^3.2.1",
     "mocha": "^3.2.0",

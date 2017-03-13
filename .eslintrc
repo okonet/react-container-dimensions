@@ -13,8 +13,7 @@
     }
   },
     "rules": {
-        "indent": ["error", 4],
-        "react/jsx-filename-extension": 0,
-        "react/no-find-dom-node": 0
+        "react/no-find-dom-node": 0,
+        "import/no-extraneous-dependencies": 0
     }
 }
