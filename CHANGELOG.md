@@ -1,3 +1,12 @@
+# HEAD
+
+- fix: Upgrade Babel
+- chore: Upgrade lint-staged
+- chore: Upgrade test dependencies
+- fix: Upgraded some libraries
+- test: Remove inconsistent test
+- fix: Uninstall the listener on componentWillUnmount to ensure the element-resize-detector is correctly set up on next mount. (#13)
+
 # 1.3.0
 
 - Pass all values of getBoundingClientRect, not just `width` and `height`. (#6)
