@@ -6,6 +6,7 @@
 - fix: Upgraded some libraries
 - test: Remove inconsistent test
 - fix: Uninstall the listener on componentWillUnmount to ensure the element-resize-detector is correctly set up on next mount. (#13)
+- fix: Do not call onResize twice on mount (#15)
 
 # 1.3.0
 
