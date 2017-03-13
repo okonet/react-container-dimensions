@@ -11,14 +11,18 @@
     "prepublish": "npm run lint && npm run clean && npm run build",
     "test": "mocha --compilers js:babel-core/register --require testSetup.js --recursive ./tests/*.js",
     "test:watch": "npm test -- --watch",
-    "eslint-staged": "eslint-staged",
+    "lint-staged": "lint-staged",
     "deps": "npm-check -s",
     "deps:update": "npm-check -u",
     "release": "npmpub"
   },
-  "pre-commit": [
-    "eslint-staged"
-  ],
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "pre-commit": "lint-staged",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/okonet/react-container-dimensions.git"
@@ -64,8 +68,7 @@
     "chai-enzyme": "^0.6.1",
     "enzyme": "^2.2.0",
     "eslint": "^3.11.0",
-    "eslint-config-wildbit": "^2.0.0",
-    "eslint-plugin-import": "^2.2.0",
+    "eslint-config-okonet": "^1.2.1",
     "jsdom": "^9.8.3",
     "lint-staged": "^3.2.1",
     "mocha": "^3.2.0",
