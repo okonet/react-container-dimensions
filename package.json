@@ -45,7 +45,7 @@
     "dimensions"
   ],
   "author": "Andrey Okonetchnikov <andrey@okonet.ru>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/okonet/react-container-dimensions/issues"
   },
