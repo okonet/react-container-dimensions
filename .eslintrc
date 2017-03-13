@@ -1,5 +1,5 @@
 {
-  "extends": "eslint-config-wildbit",
+  "extends": "eslint-config-okonet",
   "env": {
     "browser": true,
     "mocha": true
@@ -11,5 +11,9 @@
     "import/resolve": {
       "moduleDirectory": ["node_modules"]
     }
-  }
+  },
+    "rules": {
+        "react/no-find-dom-node": 0,
+        "import/no-extraneous-dependencies": 0
+    }
 }

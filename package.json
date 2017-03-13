@@ -21,9 +21,7 @@
       "git add"
     ]
   },
-  "pre-commit": [
-    "lint-staged"
-  ],
+  "pre-commit": "lint-staged",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/okonet/react-container-dimensions.git"
@@ -68,18 +66,17 @@
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
     "enzyme": "^2.7.1",
-    "eslint": "^2.5.3",
-    "eslint-config-wildbit": "^2.0.0",
-    "eslint-plugin-import": "^1.4.0",
+    "eslint": "^3.11.0",
+    "eslint-config-okonet": "^1.2.3",
     "jsdom": "^9.11.0",
-    "lint-staged": "^3.3.1",
+    "lint-staged": "^3.2.1",
     "mocha": "^3.2.0",
     "npm-check": "^5.2.2",
     "npmpub": "^3.1.0",
-    "pre-commit": "^1.2.2",
-    "react": "^0.14.8",
-    "react-addons-test-utils": "^0.14.8",
-    "react-dom": "^0.14.8",
+    "pre-commit": "^1.1.2",
+    "react": "^15.4.1",
+    "react-addons-test-utils": "^15.4.1",
+    "react-dom": "^15.4.1",
     "rimraf": "^2.5.3",
     "sinon": "^1.17.7"
   }
