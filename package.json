@@ -80,7 +80,7 @@
     "prettier": "^1.5.3",
     "react": "^16.5.0",
     "react-addons-test-utils": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "react-dom": "^16.5.0",
     "rimraf": "^2.5.3",
     "semantic-release": "^6.3.2",
     "sinon": "^2.2.0"
